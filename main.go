@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"os"
 
 	"gopkg.in/yaml.v3"
@@ -58,7 +57,7 @@ type Link struct {
 
 func main() {
 	// Read the config.yaml file
-	yamlFile, err := ioutil.ReadFile("config.yaml")
+	yamlFile, err := os.ReadFile("config.yaml")
 	if err != nil {
 		fmt.Printf("Error reading config.yaml: %v\n", err)
 		return
@@ -100,13 +99,13 @@ func main() {
 	}
 
 	// Copy the style.css file to the public directory
-	cssInput, err := ioutil.ReadFile("css/style.css")
+	cssInput, err := os.ReadFile("css/style.css")
 	if err != nil {
 		fmt.Printf("Error reading style.css: %v\n", err)
 		return
 	}
 
-	err = ioutil.WriteFile("public/style.css", cssInput, 0644)
+	err = os.WriteFile("public/style.css", cssInput, 0644)
 	if err != nil {
 		fmt.Printf("Error writing style.css: %v\n", err)
 		return
